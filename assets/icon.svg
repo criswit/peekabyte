@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" rx="64" fill="#2d3748"/>
+  
+  <!-- Document shape -->
+  <g transform="translate(96, 64)">
+    <path d="M0 0h224v64l64 64v256a32 32 0 01-32 32H32a32 32 0 01-32-32V32a32 32 0 0132-32z" fill="#e2e8f0"/>
+    <path d="M224 0v64a32 32 0 0032 32h64z" fill="#cbd5e0"/>
+  </g>
+  
+  <!-- MD letters -->
+  <text x="256" y="320" font-family="Arial, sans-serif" font-size="140" font-weight="bold" text-anchor="middle" fill="#2d3748">MD</text>
+</svg>

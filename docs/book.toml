@@ -1,0 +1,21 @@
+[book]
+authors = ["Peeka2 Contributors"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Peeka2 Documentation"
+
+[build]
+build-dir = "book"
+
+[output.html]
+default-theme = "navy"
+preferred-dark-theme = "navy"
+git-repository-url = "https://github.com/yourusername/peeka2"
+git-repository-icon = "fa-github"
+
+[output.html.playground]
+editable = false
+
+[output.html.search]
+enable = true
