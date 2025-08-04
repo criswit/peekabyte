@@ -29,10 +29,20 @@ const watchers: Watchers = {
 let mainWindow: BrowserWindow | null = null;
 
 function createWindow(): void {
+  // Set icon path based on environment
+  let iconPath: string;
+  if (app.isPackaged) {
+    // In production, the icon is in the resources folder
+    iconPath = path.join(process.resourcesPath, 'icon.png');
+  } else {
+    // In development, use the assets folder
+    iconPath = path.join(__dirname, '../../../assets/icon.png');
+  }
+
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
-    icon: path.join(__dirname, '../../../assets/icon.png'),
+    icon: iconPath,
     webPreferences: {
       preload: path.join(__dirname, '../preload/index.js'),
       nodeIntegration: false,

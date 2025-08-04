@@ -1,10 +1,10 @@
 ---
 id: task-18
 title: Fix AppImage icon display in Linux dock
-status: To Do
+status: Done
 assignee: []
 created_date: '2025-08-02'
-updated_date: '2025-08-02'
+updated_date: '2025-08-04'
 labels: []
 dependencies: []
 priority: high

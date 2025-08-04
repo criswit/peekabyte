@@ -51,8 +51,16 @@
     "build": {
         "appId": "com.example.markdown-viewer",
         "productName": "Markdown Viewer",
+        "copyright": "Copyright © 2024",
         "files": [
-            "dist/**/*"
+            "dist/**/*",
+            "assets/icon*.png"
+        ],
+        "extraResources": [
+            {
+                "from": "assets/icon.png",
+                "to": "icon.png"
+            }
         ],
         "directories": {
             "buildResources": "assets",
@@ -67,8 +75,25 @@
             "icon": "assets/icon.ico"
         },
         "linux": {
-            "target": "AppImage",
-            "icon": "assets/icon"
+            "target": [
+                {
+                    "target": "AppImage",
+                    "arch": ["x64"]
+                },
+                {
+                    "target": "deb",
+                    "arch": ["x64"]
+                }
+            ],
+            "icon": "assets/",
+            "category": "Development",
+            "maintainer": "Your Name",
+            "desktop": {
+                "Name": "Markdown Viewer",
+                "Comment": "A markdown file viewer with syntax highlighting",
+                "StartupWMClass": "markdown-viewer",
+                "Icon": "markdown-viewer"
+            }
         }
     }
 }
