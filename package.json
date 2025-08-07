@@ -1,5 +1,5 @@
 {
-    "name": "markdown-viewer",
+    "name": "peekabyte",
     "version": "0.1.0",
     "private": true,
     "main": "dist/main/index.js",
@@ -49,8 +49,8 @@
         "vite": "^4.5.1"
     },
     "build": {
-        "appId": "com.example.markdown-viewer",
-        "productName": "Markdown Viewer",
+        "appId": "criswit.peekabyte",
+        "productName": "Peekabyte",
         "copyright": "Copyright © 2024",
         "files": [
             "dist/**/*",
@@ -78,21 +78,25 @@
             "target": [
                 {
                     "target": "AppImage",
-                    "arch": ["x64"]
+                    "arch": [
+                        "x64"
+                    ]
                 },
                 {
                     "target": "deb",
-                    "arch": ["x64"]
+                    "arch": [
+                        "x64"
+                    ]
                 }
             ],
             "icon": "assets/",
             "category": "Development",
-            "maintainer": "Your Name",
+            "maintainer": "christopherthethird",
             "desktop": {
-                "Name": "Markdown Viewer",
-                "Comment": "A markdown file viewer with syntax highlighting",
-                "StartupWMClass": "markdown-viewer",
-                "Icon": "markdown-viewer"
+                "Name": "peekabyte",
+                "Comment": "peekabyte, poppin out, your file interface is lame",
+                "StartupWMClass": "peekabyte",
+                "Icon": "peekabyte"
             }
         }
     }
