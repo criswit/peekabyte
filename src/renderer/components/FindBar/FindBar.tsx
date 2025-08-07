@@ -5,7 +5,7 @@ import {
   FindInput,
   MatchCounter,
   NavigationButtons,
-  NavButton
+  NavButton,
 } from './FindBar.styles';
 
 /**
@@ -21,7 +21,7 @@ const FindBar: React.FC<FindBarProps> = ({
   hasMatches,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  
+
   // Focus input when Cmd+F is pressed
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -34,11 +34,11 @@ const FindBar: React.FC<FindBarProps> = ({
         }
       }
     };
-    
+
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
-  
+
   // Handle keyboard events
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -60,27 +60,29 @@ const FindBar: React.FC<FindBarProps> = ({
       e.currentTarget.select();
     }
   };
-  
+
   return (
     <FindBarContainer>
       <FindInput
         ref={inputRef}
-        type="text"
+        type='text'
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={e => setSearchTerm(e.target.value)}
         onKeyDown={handleKeyDown}
-        onFocus={(e) => {
+        onFocus={e => {
           // Select all text when input is focused if there's any text
           if (searchTerm) {
             e.target.select();
           }
         }}
-        placeholder="Find in document"
+        placeholder='Find in document'
         $hasMatches={hasMatches}
       />
       <MatchCounter>
-        {searchTerm ? 
-          (hasMatches ? `${currentMatch} of ${totalMatches}` : 'No matches found') 
+        {searchTerm
+          ? hasMatches
+            ? `${currentMatch} of ${totalMatches}`
+            : 'No matches found'
           : ''}
       </MatchCounter>
       <NavigationButtons>

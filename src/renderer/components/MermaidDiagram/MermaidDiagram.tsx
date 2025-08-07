@@ -11,7 +11,7 @@ const MermaidContainer = styled.div`
   background-color: ${props => props.theme.colors.codeBackground};
   border-radius: 6px;
   padding: 20px;
-  
+
   svg {
     max-width: 100%;
     height: auto;
@@ -44,36 +44,39 @@ const MermaidDiagram: React.FC<MermaidDiagramProps> = ({ chart }) => {
       try {
         // Dynamic import to reduce initial bundle size
         const mermaid = (await import('mermaid')).default;
-        
+
         // Configure mermaid based on theme
-        const isDark = themeName === 'dark' || themeName === 'monokai' || 
-                       themeName === 'dracula' || themeName === 'synthwave';
-        
+        const isDark =
+          themeName === 'dark' ||
+          themeName === 'monokai' ||
+          themeName === 'dracula' ||
+          themeName === 'synthwave';
+
         mermaid.initialize({
-      startOnLoad: false,
-      theme: isDark ? 'dark' : 'default',
-      themeVariables: {
-        darkMode: isDark,
-        background: 'transparent',
-        primaryColor: isDark ? '#bb86fc' : '#f4511e',
-        primaryTextColor: isDark ? '#fff' : '#000',
-        primaryBorderColor: isDark ? '#6200ee' : '#ff6e40',
-        lineColor: isDark ? '#bb86fc' : '#ff6e40',
-        secondaryColor: isDark ? '#03dac6' : '#018786',
-        tertiaryColor: isDark ? '#3700b3' : '#6200ee',
-      },
-      flowchart: {
-        useMaxWidth: true,
-        htmlLabels: true,
-      },
-      securityLevel: 'loose',
+          startOnLoad: false,
+          theme: isDark ? 'dark' : 'default',
+          themeVariables: {
+            darkMode: isDark,
+            background: 'transparent',
+            primaryColor: isDark ? '#bb86fc' : '#f4511e',
+            primaryTextColor: isDark ? '#fff' : '#000',
+            primaryBorderColor: isDark ? '#6200ee' : '#ff6e40',
+            lineColor: isDark ? '#bb86fc' : '#ff6e40',
+            secondaryColor: isDark ? '#03dac6' : '#018786',
+            tertiaryColor: isDark ? '#3700b3' : '#6200ee',
+          },
+          flowchart: {
+            useMaxWidth: true,
+            htmlLabels: true,
+          },
+          securityLevel: 'loose',
         });
 
         // Render the diagram
         setError(null);
         const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`;
         const { svg } = await mermaid.render(id, chart);
-        
+
         if (containerRef.current) {
           containerRef.current.innerHTML = svg;
         }

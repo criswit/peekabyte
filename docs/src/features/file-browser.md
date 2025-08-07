@@ -9,18 +9,21 @@ Located on the left side of the application, the File Browser presents your file
 ## Features
 
 ### Directory Navigation
+
 - **Click to expand**: Click on folder names or arrows to expand/collapse
 - **Single-click selection**: Click files to view their contents
 - **Home button**: Quick navigation to your home directory
 - **Path display**: Current directory path shown at the top
 
 ### Favorites System
+
 - **Add to favorites**: Click the star icon next to any directory
 - **Quick access**: Favorites appear at the top of the browser
 - **Persistent storage**: Favorites are saved between sessions
 - **Remove favorites**: Click the star again to remove
 
 ### File Watching
+
 - **Real-time updates**: See changes as they happen
 - **New file indicators**: Newly created files are highlighted
 - **Deletion handling**: Removed files disappear automatically
@@ -29,12 +32,14 @@ Located on the left side of the application, the File Browser presents your file
 ## User Interface
 
 ### Visual Design
+
 - **Icons**: Different icons for files and folders
 - **Indentation**: Clear hierarchy with proper spacing
 - **Hover effects**: Visual feedback on mouse hover
 - **Selection state**: Clear indication of selected items
 
 ### Interactions
+
 - **Smooth animations**: Expand/collapse transitions
 - **Loading states**: Indicators while reading directories
 - **Error handling**: Graceful handling of permission errors
@@ -43,12 +48,14 @@ Located on the left side of the application, the File Browser presents your file
 ## Technical Details
 
 ### Performance
+
 - **Lazy loading**: Directories load content on demand
 - **Caching**: Recently accessed directories are cached
 - **Debouncing**: File system events are debounced
 - **Memory efficient**: Only expanded nodes kept in memory
 
 ### Limitations
+
 - **Large directories**: May be slow with 10,000+ files
 - **Network drives**: Performance depends on connection
 - **Symbolic links**: Currently follows symlinks

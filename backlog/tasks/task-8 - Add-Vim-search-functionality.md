@@ -19,6 +19,6 @@ Implement Vim-style search commands to enable efficient text searching within do
 - [ ] Search highlights all matches in document
 - [ ] n/N navigate to next/previous match
 - [ ] Search prompt shows match count
-- [ ] * searches for word under cursor
+- [ ] - searches for word under cursor
 - [ ] Search integrates with existing find bar
 - [ ] Search history accessible with up/down arrows

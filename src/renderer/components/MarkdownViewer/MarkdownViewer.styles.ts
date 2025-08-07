@@ -37,7 +37,7 @@ export const ViewerButton = styled.button`
   cursor: pointer;
   margin-left: 10px;
   white-space: nowrap; /* Prevent text wrapping */
-  
+
   &:hover {
     background-color: ${props => props.theme.colors.buttonHover};
     color: ${props => props.theme.colors.foreground};
@@ -52,114 +52,124 @@ export const ContentContainer = styled.div`
 `;
 
 export const MarkdownContent = styled.div`
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  
-  h1, h2, h3, h4, h5, h6 {
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: ${props => props.theme.colors.foreground};
     margin-top: 1.5em;
     margin-bottom: 0.5em;
   }
-  
+
   h1 {
     font-size: 1.8em;
     border-bottom: 1px solid ${props => props.theme.colors.border};
     padding-bottom: 0.3em;
   }
-  
+
   h2 {
     font-size: 1.5em;
     border-bottom: 1px solid ${props => props.theme.colors.border};
     padding-bottom: 0.3em;
   }
-  
+
   a {
     color: ${props => props.theme.colors.linkColor};
     text-decoration: none;
-    
+
     &:hover {
       text-decoration: underline;
       color: ${props => props.theme.colors.linkHover};
     }
   }
-  
+
   blockquote {
     border-left: 4px solid ${props => props.theme.colors.blockquoteBorder};
     margin-left: 0;
     padding-left: 1em;
     background-color: ${props => props.theme.colors.blockquoteBackground};
   }
-  
+
   code {
     background-color: ${props => props.theme.colors.codeBackground};
     color: ${props => props.theme.colors.codeForeground};
     padding: 0.2em 0.4em;
     border-radius: 3px;
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-family:
+      'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
     font-size: 85%;
   }
-  
+
   pre {
     background-color: ${props => props.theme.colors.codeBackground};
     border-radius: 6px;
     padding: 16px;
     overflow: auto;
-    
+
     code {
       background-color: transparent;
       padding: 0;
     }
   }
-  
+
   table {
     border-collapse: collapse;
     width: 100%;
     margin: 1em 0;
   }
-  
-  th, td {
+
+  th,
+  td {
     border: 1px solid ${props => props.theme.colors.tableBorder};
     padding: 8px 12px;
   }
-  
+
   th {
     background-color: ${props => props.theme.colors.tableHeaderBackground};
   }
-  
+
   tr:nth-child(even) {
     background-color: ${props => props.theme.colors.tableRowEven};
   }
-  
+
   img {
     max-width: 100%;
   }
-  
-  ul, ol {
+
+  ul,
+  ol {
     padding-left: 2em;
   }
-  
+
   li {
     margin: 0.3em 0;
   }
-  
+
   hr {
     border: none;
     border-top: 1px solid ${props => props.theme.colors.border};
     margin: 1.5em 0;
   }
-  
+
   /* Math equation styles */
   .katex {
     font-size: 1.1em;
     color: ${props => props.theme.colors.foreground};
   }
-  
+
   .katex-display {
     margin: 1em 0;
     overflow-x: auto;
     overflow-y: hidden;
     padding: 0.5em 0;
   }
-  
+
   /* Inline math */
   .katex:not(.katex-display) {
     padding: 0 0.2em;
@@ -199,11 +209,11 @@ export const ErrorState = styled.div`
   color: ${props => props.theme.colors.error};
   text-align: center;
   padding: 20px;
-  
+
   h3 {
     margin-bottom: 10px;
   }
-  
+
   p {
     margin-bottom: 20px;
     max-width: 400px;
@@ -218,7 +228,7 @@ export const RefreshButton = styled.button`
   padding: 8px 16px;
   cursor: pointer;
   font-size: 14px;
-  
+
   &:hover {
     opacity: 0.9;
   }
@@ -234,7 +244,10 @@ export const FileDeletedMessage = styled.div`
 `;
 
 export const HighlightedText = styled.span<{ $isCurrent: boolean }>`
-  background-color: ${props => props.$isCurrent ? props.theme.colors.searchHighlightCurrent : props.theme.colors.searchHighlight};
+  background-color: ${props =>
+    props.$isCurrent
+      ? props.theme.colors.searchHighlightCurrent
+      : props.theme.colors.searchHighlight};
   color: #000;
   border-radius: 2px;
 `;

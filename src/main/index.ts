@@ -6,7 +6,7 @@ import * as chokidar from 'chokidar';
 import { FileItem, FileChangeEvent } from '@shared/types';
 
 // Handle any uncaught exceptions
-process.on('uncaughtException', (error) => {
+process.on('uncaughtException', error => {
   console.error('Uncaught Exception:', error);
 });
 
@@ -23,7 +23,7 @@ interface Watchers {
 
 const watchers: Watchers = {
   directory: null,
-  file: null
+  file: null,
 };
 
 let mainWindow: BrowserWindow | null = null;
@@ -47,8 +47,8 @@ function createWindow(): void {
       preload: path.join(__dirname, '../preload/index.js'),
       nodeIntegration: false,
       contextIsolation: true,
-      devTools: true
-    }
+      devTools: true,
+    },
   });
 
   // Load the built index.html file
@@ -89,74 +89,141 @@ ipcMain.handle('get-home-dir', (): string => {
 });
 
 // Read directory contents
-ipcMain.handle('read-directory', async (_event, dirPath: string, showDotFiles: boolean = false): Promise<FileItem[]> => {
-  try {
-    const files = await fs.promises.readdir(dirPath, { withFileTypes: true });
-    
-    // Filter and map files
-    const fileList: FileItem[] = files
-      .filter(file => showDotFiles || !file.name.startsWith('.'))
-      .map(file => {
-        const isDirectory = file.isDirectory();
-        const filePath = path.join(dirPath, file.name);
-        const isMarkdown = !isDirectory && 
-          (file.name.toLowerCase().endsWith('.md') || 
-           file.name.toLowerCase().endsWith('.markdown'));
-        const isJson = !isDirectory && 
-          (file.name.toLowerCase().endsWith('.json') ||
-           file.name.toLowerCase().endsWith('.jsonc'));
-        
-        return {
-          name: file.name,
-          path: filePath,
-          isDirectory,
-          isMarkdown,
-          isJson
-        };
-      })
-      .sort((a, b) => {
-        // Directories first, then alphabetically
-        if (a.isDirectory && !b.isDirectory) return -1;
-        if (!a.isDirectory && b.isDirectory) return 1;
-        return a.name.localeCompare(b.name);
-      });
-    
-    return fileList;
-  } catch (error) {
-    console.error('Error reading directory:', error);
-    throw error;
+ipcMain.handle(
+  'read-directory',
+  async (
+    _event,
+    dirPath: string,
+    showDotFiles: boolean = false
+  ): Promise<FileItem[]> => {
+    try {
+      const files = await fs.promises.readdir(dirPath, { withFileTypes: true });
+
+      // Filter and map files
+      const fileList: FileItem[] = files
+        .filter(file => showDotFiles || !file.name.startsWith('.'))
+        .map(file => {
+          const isDirectory = file.isDirectory();
+          const filePath = path.join(dirPath, file.name);
+          const fileName = file.name.toLowerCase();
+          const isMarkdown =
+            !isDirectory &&
+            (fileName.endsWith('.md') || fileName.endsWith('.markdown'));
+          const isJson =
+            !isDirectory &&
+            (fileName.endsWith('.json') || fileName.endsWith('.jsonc'));
+          const isImage =
+            !isDirectory &&
+            (fileName.endsWith('.png') ||
+              fileName.endsWith('.jpg') ||
+              fileName.endsWith('.jpeg'));
+          const isPdf = !isDirectory && fileName.endsWith('.pdf');
+          const isHtml =
+            !isDirectory &&
+            (fileName.endsWith('.html') || fileName.endsWith('.htm'));
+          const isCsv =
+            !isDirectory &&
+            (fileName.endsWith('.csv') ||
+              fileName.endsWith('.tsv') ||
+              fileName.endsWith('.psv') ||
+              (fileName.endsWith('.txt') && fileName.includes('csv')) ||
+              (fileName.endsWith('.dat') && fileName.includes('csv')));
+
+          if (isCsv) {
+            console.log(`Detected CSV file: ${file.name}`);
+          }
+
+          return {
+            name: file.name,
+            path: filePath,
+            isDirectory,
+            isMarkdown,
+            isJson,
+            isImage,
+            isPdf,
+            isHtml,
+            isCsv,
+          };
+        })
+        .sort((a, b) => {
+          // Directories first, then alphabetically
+          if (a.isDirectory && !b.isDirectory) return -1;
+          if (!a.isDirectory && b.isDirectory) return 1;
+          return a.name.localeCompare(b.name);
+        });
+
+      return fileList;
+    } catch (error) {
+      console.error('Error reading directory:', error);
+      throw error;
+    }
   }
-});
+);
 
 // Read file contents
-ipcMain.handle('read-file', async (_event, filePath: string): Promise<string> => {
-  try {
-    console.log(`Reading file: ${filePath}`);
-    // First check if the file exists
-    await fs.promises.access(filePath, fs.constants.F_OK);
-    
-    // Then read the file content
-    const content = await fs.promises.readFile(filePath, 'utf8');
-    console.log(`Successfully read file: ${filePath}`);
-    return content;
-  } catch (error) {
-    console.error('Error reading file:', error);
-    throw error;
+ipcMain.handle(
+  'read-file',
+  async (_event, filePath: string): Promise<string> => {
+    try {
+      console.log(`Reading file: ${filePath}`);
+
+      // Check if it's a CSV file
+      const fileName = path.basename(filePath).toLowerCase();
+      const isCsv =
+        fileName.endsWith('.csv') ||
+        fileName.endsWith('.tsv') ||
+        fileName.endsWith('.psv');
+      if (isCsv) {
+        console.log(`Reading CSV file: ${filePath}`);
+      }
+
+      // First check if the file exists
+      await fs.promises.access(filePath, fs.constants.F_OK);
+
+      // Then read the file content
+      const content = await fs.promises.readFile(filePath, 'utf8');
+      console.log(`Successfully read file: ${filePath}`);
+      return content;
+    } catch (error) {
+      console.error('Error reading file:', error);
+      throw error;
+    }
   }
-});
+);
+
+// Read binary file contents as base64
+ipcMain.handle(
+  'read-binary-file',
+  async (_event, filePath: string): Promise<string> => {
+    try {
+      console.log(`Reading binary file: ${filePath}`);
+      // First check if the file exists
+      await fs.promises.access(filePath, fs.constants.F_OK);
+
+      // Then read the file content as base64
+      const content = await fs.promises.readFile(filePath);
+      const base64Content = content.toString('base64');
+      console.log(`Successfully read binary file: ${filePath}`);
+      return base64Content;
+    } catch (error) {
+      console.error('Error reading binary file:', error);
+      throw error;
+    }
+  }
+);
 
 // Open directory dialog
 ipcMain.handle('open-directory-dialog', async (): Promise<string | null> => {
   if (!mainWindow) return null;
-  
+
   const result = await dialog.showOpenDialog(mainWindow, {
-    properties: ['openDirectory']
+    properties: ['openDirectory'],
   });
-  
+
   if (result.canceled) {
     return null;
   }
-  
+
   return result.filePaths[0];
 });
 
@@ -167,27 +234,27 @@ ipcMain.handle('watch-file', (_event, filePath: string): boolean => {
     watchers.file.close();
     watchers.file = null;
   }
-  
+
   console.log(`Setting up watcher for file: ${filePath}`);
-  
+
   // Set up a new watcher for the file
   watchers.file = chokidar.watch(filePath, {
     persistent: true,
     ignoreInitial: true, // Don't trigger events for existing files
     awaitWriteFinish: {
       stabilityThreshold: 300,
-      pollInterval: 100
-    }
+      pollInterval: 100,
+    },
   });
-  
+
   // Handle file changes
-  watchers.file.on('change', async (path) => {
+  watchers.file.on('change', async path => {
     try {
       console.log(`File changed: ${path}`);
       // Read the updated file content
       const content = await fs.promises.readFile(path, 'utf8');
       console.log(`Successfully read updated file: ${path}`);
-      
+
       // Send the updated content to the renderer
       if (mainWindow) {
         const event: FileChangeEvent = { path, content };
@@ -199,21 +266,21 @@ ipcMain.handle('watch-file', (_event, filePath: string): boolean => {
       // We'll just log the error and not send an update
     }
   });
-  
+
   // Handle file deleted
-  watchers.file.on('unlink', (path) => {
+  watchers.file.on('unlink', path => {
     console.log(`File deleted: ${path}`);
     if (mainWindow) {
       const event: FileChangeEvent = { path, deleted: true };
       mainWindow.webContents.send('file-changed', event);
     }
   });
-  
+
   // Handle any error
-  watchers.file.on('error', (error) => {
+  watchers.file.on('error', error => {
     console.error(`File watcher error: ${error}`);
   });
-  
+
   return true;
 });
 

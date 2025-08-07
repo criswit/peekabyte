@@ -13,12 +13,14 @@ Before you begin, ensure you have the following installed:
 ## Quick Start
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/yourusername/peeka2.git
    cd peeka2
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```

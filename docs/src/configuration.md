@@ -5,14 +5,18 @@ Peeka2 can be configured through various methods to customize its behavior and a
 ## Configuration Methods
 
 ### 1. User Preferences
+
 Stored in LocalStorage:
+
 - Theme selection
 - Panel widths
 - Favorite directories
 - View preferences
 
 ### 2. Environment Variables
+
 For development:
+
 ```bash
 # Enable debug logging
 DEBUG=true npm run electron:dev
@@ -22,7 +26,9 @@ VITE_PORT=3000 npm run dev
 ```
 
 ### 3. Build Configuration
+
 In `package.json`:
+
 ```json
 {
   "build": {
@@ -35,6 +41,7 @@ In `package.json`:
 ## User Preferences
 
 ### Theme Configuration
+
 ```javascript
 // Stored in LocalStorage
 {
@@ -43,6 +50,7 @@ In `package.json`:
 ```
 
 ### Panel Configuration
+
 ```javascript
 {
   "leftPanelWidth": 300,  // pixels
@@ -51,6 +59,7 @@ In `package.json`:
 ```
 
 ### Favorites
+
 ```javascript
 {
   "favorites": [
@@ -63,7 +72,9 @@ In `package.json`:
 ## Application Settings
 
 ### Window Settings
+
 Default window configuration:
+
 ```javascript
 {
   width: 1200,
@@ -76,6 +87,7 @@ Default window configuration:
 ```
 
 ### File Watching
+
 ```javascript
 {
   maxWatchers: 100,        // Maximum concurrent watchers
@@ -91,7 +103,9 @@ Default window configuration:
 ## Developer Configuration
 
 ### TypeScript Settings
+
 Configured in `tsconfig.json`:
+
 ```json
 {
   "compilerOptions": {
@@ -103,7 +117,9 @@ Configured in `tsconfig.json`:
 ```
 
 ### Vite Configuration
+
 In `vite.config.ts`:
+
 ```javascript
 {
   server: {
@@ -119,6 +135,7 @@ In `vite.config.ts`:
 ## Security Configuration
 
 ### Content Security Policy
+
 ```javascript
 {
   "default-src": ["'self'"],
@@ -129,6 +146,7 @@ In `vite.config.ts`:
 ```
 
 ### Permissions
+
 ```javascript
 {
   webPreferences: {
@@ -142,6 +160,7 @@ In `vite.config.ts`:
 ## Performance Configuration
 
 ### Renderer Process
+
 ```javascript
 {
   maxFileSize: 50 * 1024 * 1024,  // 50MB max file size
@@ -151,6 +170,7 @@ In `vite.config.ts`:
 ```
 
 ### Main Process
+
 ```javascript
 {
   maxConcurrentReads: 10,
@@ -162,29 +182,31 @@ In `vite.config.ts`:
 ## Future Configuration Options
 
 ### Planned Settings UI
+
 - Preferences window
 - JSON config file
 - Command-line arguments
 - Per-project settings
 
 ### Planned Options
+
 ```javascript
 {
   // Display
   "fontSize": 14,
   "fontFamily": "monospace",
   "lineHeight": 1.5,
-  
+
   // Editor
   "tabSize": 2,
   "wordWrap": true,
   "showLineNumbers": true,
-  
+
   // Files
   "showHiddenFiles": false,
   "fileAssociations": {},
   "excludePatterns": [],
-  
+
   // Advanced
   "telemetry": false,
   "autoUpdate": true,
@@ -195,16 +217,19 @@ In `vite.config.ts`:
 ## Configuration File Locations
 
 ### Windows
+
 ```
 %APPDATA%\peeka2\config.json
 ```
 
 ### macOS
+
 ```
 ~/Library/Application Support/peeka2/config.json
 ```
 
 ### Linux
+
 ```
 ~/.config/peeka2/config.json
 ```
@@ -212,6 +237,7 @@ In `vite.config.ts`:
 ## Environment-Specific Config
 
 ### Development
+
 ```javascript
 if (process.env.NODE_ENV === 'development') {
   // Enable dev tools
@@ -221,6 +247,7 @@ if (process.env.NODE_ENV === 'development') {
 ```
 
 ### Production
+
 ```javascript
 if (process.env.NODE_ENV === 'production') {
   // Enable security
@@ -232,12 +259,14 @@ if (process.env.NODE_ENV === 'production') {
 ## Migrating Configuration
 
 ### Export Settings
+
 ```bash
 # Future feature
 peeka2 --export-config > config.json
 ```
 
 ### Import Settings
+
 ```bash
 # Future feature
 peeka2 --import-config config.json

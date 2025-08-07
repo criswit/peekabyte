@@ -5,21 +5,27 @@ Peeka2 follows Electron's multi-process architecture with clear separation of co
 ## Process Architecture
 
 ### Main Process
+
 The main process (`src/main/`) handles:
+
 - Window management
 - File system operations
 - Native OS integration
 - IPC communication setup
 
 ### Renderer Process
+
 The renderer process (`src/renderer/`) contains:
+
 - React application
 - UI components
 - User interactions
 - Theme management
 
 ### Preload Script
+
 The preload script (`src/preload/`) provides:
+
 - Secure bridge between main and renderer
 - Type-safe API exposure
 - Context isolation
@@ -44,12 +50,14 @@ src/
 ## Component Architecture
 
 ### File Browser Component
+
 - Tree structure for directory navigation
 - Lazy loading for performance
 - File watching integration
 - Favorites management
 
 ### Content Viewers
+
 - Plugin-based architecture
 - Type detection system
 - Specialized renderers:
@@ -59,6 +67,7 @@ src/
   - CodeViewer (planned)
 
 ### Theme System
+
 - CSS variables for theming
 - Styled-components integration
 - Runtime theme switching
@@ -83,26 +92,31 @@ src/
 ## State Management
 
 ### Local State
+
 - Component-level state with React hooks
 - No global state management library needed
 
 ### Persistent State
+
 - LocalStorage for user preferences
 - File system for application data
 
 ### Theme Context
+
 - React Context for theme state
 - Provider pattern for theme distribution
 
 ## Build System
 
 ### Development
+
 - Vite for renderer process
 - TypeScript compiler for main/preload
 - Hot module replacement
 - Concurrent watchers
 
 ### Production
+
 - Vite build for optimized bundles
 - Electron Builder for distribution
 - Code signing support

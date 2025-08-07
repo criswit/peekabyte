@@ -1,0 +1,21 @@
+id,name,email,age,salary,department,hire_date,active,rating
+1,John Doe,john.doe@example.com,28,75000,Engineering,2022-01-15,true,4.5
+2,Jane Smith,jane.smith@example.com,32,82000,Marketing,2021-03-22,true,4.8
+3,Bob Johnson,bob.johnson@example.com,45,95000,Engineering,2019-07-10,true,4.2
+4,Alice Brown,alice.brown@example.com,29,68000,Sales,2022-05-18,false,3.9
+5,Charlie Wilson,charlie.wilson@example.com,38,88000,Engineering,2020-11-03,true,4.6
+6,Diana Davis,diana.davis@example.com,26,62000,Marketing,2023-02-14,true,4.1
+7,Frank Miller,frank.miller@example.com,41,92000,Sales,2018-09-25,true,4.4
+8,Grace Lee,grace.lee@example.com,33,79000,Engineering,2021-08-12,true,4.7
+9,Henry Taylor,henry.taylor@example.com,37,85000,Marketing,2020-04-07,false,4.0
+10,Ivy Chen,ivy.chen@example.com,30,71000,Sales,2022-12-01,true,4.3
+11,Jack Anderson,jack.anderson@example.com,44,98000,Engineering,2017-06-30,true,4.9
+12,Karen White,karen.white@example.com,27,65000,Marketing,2023-01-20,true,3.8
+13,Leo Garcia,leo.garcia@example.com,35,87000,Sales,2019-10-15,true,4.5
+14,Mia Rodriguez,mia.rodriguez@example.com,31,76000,Engineering,2021-12-08,false,4.2
+15,Noah Thompson,noah.thompson@example.com,39,91000,Marketing,2018-04-12,true,4.6
+16,Olivia Martinez,olivia.martinez@example.com,25,59000,Sales,2023-03-30,true,3.7
+17,Paul Clark,paul.clark@example.com,42,94000,Engineering,2017-11-22,true,4.8
+18,Quinn Lewis,quinn.lewis@example.com,34,81000,Marketing,2020-08-05,true,4.1
+19,Rachel Hall,rachel.hall@example.com,28,73000,Sales,2022-07-18,false,4.0
+20,Sam Young,sam.young@example.com,36,89000,Engineering,2019-02-28,true,4.7

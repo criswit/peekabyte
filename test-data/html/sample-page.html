@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sample HTML Page - Markdown Viewer Test</title>
+    <style>
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #333;
+      }
+
+      .container {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2.5em;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin: 30px 0;
+      }
+
+      .feature-card {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #3498db;
+        transition: transform 0.2s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-card h3 {
+        color: #2980b9;
+        margin-top: 0;
+      }
+
+      .demo-section {
+        margin: 30px 0;
+        padding: 20px;
+        background: #ecf0f1;
+        border-radius: 8px;
+      }
+
+      .interactive-demo {
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      button {
+        background: #3498db;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.2s ease;
+      }
+
+      button:hover {
+        background: #2980b9;
+      }
+
+      .result {
+        margin-top: 15px;
+        padding: 10px;
+        background: #d5f4e6;
+        border-radius: 5px;
+        display: none;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
+
+      th {
+        background: #3498db;
+        color: white;
+      }
+
+      tr:nth-child(even) {
+        background: #f2f2f2;
+      }
+
+      .code-block {
+        background: #2c3e50;
+        color: #ecf0f1;
+        padding: 15px;
+        border-radius: 5px;
+        font-family: 'Courier New', monospace;
+        overflow-x: auto;
+        margin: 15px 0;
+      }
+
+      .highlight {
+        background: #f39c12;
+        padding: 2px 4px;
+        border-radius: 3px;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🚀 HTML Viewer Demo</h1>
+
+      <p>
+        Welcome to the <strong>HTML Viewer</strong> component of the Markdown
+        Viewer application! This page demonstrates various HTML features and how
+        they render in the integrated browser-like viewer.
+      </p>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>📄 File Support</h3>
+          <p>
+            View HTML files with full browser-like rendering, including CSS
+            styles, JavaScript interactions, and responsive layouts.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3>🔄 View Modes</h3>
+          <p>
+            Toggle between rendered view and source code view to see both the
+            visual output and the underlying HTML markup.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3>🔒 Security</h3>
+          <p>
+            HTML content is rendered in a sandboxed iframe for security,
+            preventing malicious scripts from affecting the main application.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <h3>⚡ Interactive</h3>
+          <p>
+            JavaScript and CSS animations work seamlessly, providing a full web
+            browsing experience within the desktop app.
+          </p>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h2>🎮 Interactive Demo</h2>
+        <p>Click the button below to see JavaScript in action:</p>
+
+        <div class="interactive-demo">
+          <button onclick="showMessage()">Click Me!</button>
+          <div id="result" class="result">
+            <strong>🎉 Success!</strong> JavaScript is working perfectly in the
+            HTML viewer!
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h2>📊 Data Table Example</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>File Type</th>
+              <th>Extension</th>
+              <th>Viewer Component</th>
+              <th>Features</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Markdown</td>
+              <td>.md, .markdown</td>
+              <td>MarkdownViewer</td>
+              <td>Syntax highlighting, search</td>
+            </tr>
+            <tr>
+              <td>JSON</td>
+              <td>.json, .jsonc</td>
+              <td>JsonViewer</td>
+              <td>JSONPath, jq queries</td>
+            </tr>
+            <tr>
+              <td>Images</td>
+              <td>.png, .jpg, .jpeg</td>
+              <td>ImageViewer</td>
+              <td>Zoom, pan controls</td>
+            </tr>
+            <tr>
+              <td>PDF</td>
+              <td>.pdf</td>
+              <td>PDFViewer</td>
+              <td>Embedded viewer, download</td>
+            </tr>
+            <tr>
+              <td><span class="highlight">HTML</span></td>
+              <td><span class="highlight">.html, .htm</span></td>
+              <td><span class="highlight">HTMLViewer</span></td>
+              <td><span class="highlight">Browser-like rendering</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="demo-section">
+        <h2>💻 Code Example</h2>
+        <p>Here's how the HTMLViewer component handles file rendering:</p>
+
+        <div class="code-block">
+          &lt;HTMLFrame src={htmlDataUrl} title={selectedFile.name}
+          sandbox="allow-scripts allow-same-origin allow-forms" /&gt;
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h2>✨ CSS Animations</h2>
+        <p>
+          The viewer supports modern CSS features including animations and
+          transitions. Hover over the feature cards above to see them in action!
+        </p>
+      </div>
+
+      <footer
+        style="
+          text-align: center;
+          margin-top: 40px;
+          padding-top: 20px;
+          border-top: 1px solid #ddd;
+          color: #666;
+        "
+      >
+        <p>
+          🎯 This HTML file demonstrates the full capabilities of the integrated
+          HTML viewer.
+        </p>
+        <p>
+          <em
+            >Switch to "Source" mode to see the underlying HTML and CSS
+            code!</em
+          >
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      function showMessage() {
+        const result = document.getElementById('result');
+        result.style.display = 'block';
+
+        // Add a nice animation
+        result.style.opacity = '0';
+        result.style.transform = 'translateY(-10px)';
+
+        setTimeout(() => {
+          result.style.transition = 'all 0.3s ease';
+          result.style.opacity = '1';
+          result.style.transform = 'translateY(0)';
+        }, 10);
+
+        // Auto-hide after 3 seconds
+        setTimeout(() => {
+          result.style.opacity = '0';
+          result.style.transform = 'translateY(-10px)';
+          setTimeout(() => {
+            result.style.display = 'none';
+          }, 300);
+        }, 3000);
+      }
+
+      // Add some dynamic content
+      document.addEventListener('DOMContentLoaded', function () {
+        console.log('HTML Viewer Demo loaded successfully!');
+
+        // Add current timestamp
+        const timestamp = new Date().toLocaleString();
+        const footer = document.querySelector('footer');
+        const timeElement = document.createElement('p');
+        timeElement.innerHTML = `<small>Loaded at: ${timestamp}</small>`;
+        timeElement.style.color = '#999';
+        footer.appendChild(timeElement);
+      });
+    </script>
+  </body>
+</html>

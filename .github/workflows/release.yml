@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    
+
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
@@ -76,7 +76,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -96,23 +96,23 @@ jobs:
           release_name: Release ${{ github.ref }}
           body: |
             Release ${{ github.ref_name }}
-            
+
             ## Downloads
             - **Linux**: AppImage
             - **Windows**: exe installer
             - **macOS**: dmg installer
-            
+
             ## Installation
-            
+
             ### Linux
             ```bash
             chmod +x Markdown-Viewer-*.AppImage
             ./Markdown-Viewer-*.AppImage
             ```
-            
+
             ### Windows
             Run the `.exe` installer
-            
+
             ### macOS
             Open the `.dmg` file and drag the app to Applications
           draft: false

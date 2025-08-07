@@ -5,21 +5,24 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Common Development Commands
 
 ### Development
+
 ```bash
 npm run electron:dev   # Start Electron with hot reload (Vite + TypeScript watchers)
 npm run dev           # Start Vite dev server only (without Electron)
 ```
 
 ### Building
+
 ```bash
 npm run build         # Build all components (main, preload, renderer)
 npm run build:main    # Build main process only
-npm run build:preload # Build preload script only  
+npm run build:preload # Build preload script only
 npm run build:renderer # Build renderer process only
 npm run electron:build # Build and package for distribution
 ```
 
 ### Other Commands
+
 ```bash
 npm run start         # Run production build
 npm run clean         # Clean build artifacts
@@ -31,11 +34,13 @@ npm run debug         # Run with debug logging
 This is a TypeScript Electron application with React, using a three-process architecture:
 
 ### Process Structure
+
 - **Main Process** (`src/main/`): Electron backend, handles file system, IPC, window management
 - **Preload Script** (`src/preload/`): Secure bridge between main and renderer processes
 - **Renderer Process** (`src/renderer/`): React frontend application
 
 ### Key Technologies
+
 - **TypeScript**: Strict mode enabled across all processes
 - **React 18**: Functional components with hooks, styled-components for styling
 - **Electron 28**: Desktop framework with contextIsolation for security
@@ -43,6 +48,7 @@ This is a TypeScript Electron application with React, using a three-process arch
 - **IPC Communication**: Type-safe communication via `@shared/types`
 
 ### Directory Structure
+
 ```
 src/
 ├── main/           # Electron main process
@@ -55,6 +61,7 @@ src/
 ```
 
 ### TypeScript Configuration
+
 - Base config: `tsconfig.json` (ESNext modules for renderer)
 - Main process: `tsconfig.main.json` (CommonJS output)
 - Preload: `tsconfig.preload.json` (CommonJS output)
@@ -63,23 +70,27 @@ src/
 ## Key Features and Implementation
 
 ### File System Operations
+
 - **Main Process Handler**: `src/main/index.ts` implements IPC handlers
 - **API Methods**: `readDirectory`, `readFile`, `getHomeDirectory`, `showOpenDialog`
 - **File Watching**: Uses chokidar for directory and file change monitoring
 
 ### UI Components
+
 - **FileBrowser** (`src/renderer/components/FileBrowser.tsx`): Directory navigation with favorites
 - **MarkdownViewer** (`src/renderer/components/MarkdownViewer.tsx`): Renders markdown with syntax highlighting
 - **JsonViewer** (`src/renderer/components/JsonViewer.tsx`): JSON file display
 - **ThemeSelector** (`src/renderer/components/ThemeSelector.tsx`): Theme switching UI
 
 ### Theme System
+
 - 6 built-in themes: dark, light, synthwave, monokai, github, dracula
 - Themes defined in `src/renderer/themes/`
 - CSS variables integration via styled-components ThemeProvider
 - LocalStorage persistence
 
 ### State Management
+
 - React Context for theme state (`ThemeContext`)
 - LocalStorage for persistence (panel width, favorites, theme)
 - Component-level state for UI interactions
@@ -87,6 +98,7 @@ src/
 ## Development Guidelines
 
 ### When Adding New Features
+
 1. Define types in `src/shared/types.ts` for cross-process communication
 2. Add IPC handlers in `src/main/index.ts` for native functionality
 3. Expose methods in `src/preload/index.ts` with proper typing
@@ -94,12 +106,14 @@ src/
 5. Follow existing patterns for styled-components and theming
 
 ### Security Considerations
+
 - Always use contextIsolation (already configured)
 - Never expose Node.js APIs directly to renderer
 - All file system operations go through IPC
 - Validate file paths in main process handlers
 
 ### Code Patterns
+
 - Use singleton pattern with exported instances (per user preferences)
 - Functional React components with hooks
 - Type-safe IPC communication
@@ -109,30 +123,37 @@ src/
 ## Important Notes
 
 ### No Testing Framework
+
 Currently no test framework is configured. When adding tests, consider setting up Vitest for unit tests and Playwright for E2E tests.
 
 ### No Linting/Formatting
+
 No ESLint or Prettier configuration exists. TypeScript strict mode provides basic linting. Consider adding these tools for consistency.
 
 ### File Watching Limitations
+
 File watchers are cleaned up when switching files/directories to prevent memory leaks. Only one file and one directory can be watched at a time.
 
 ### Build Output
+
 - Development: Uses Vite dev server on port 5173
 - Production: Static files served from `dist/` directory
 - Distribution: Packages created in `release/` directory
 
 ### Icon Configuration
+
 - Window icon path in `src/main/index.ts` must be relative to compiled output (`dist/main/index.js`)
 - Current path: `../../../assets/icon.png` (goes up 3 levels from dist/main/)
 - Icons for Linux should be in multiple sizes: icon@16.png, icon@32.png, icon@64.png, icon@128.png, icon@256.png
 - AppImage icon configuration in package.json: `"icon": "assets/icon"` (without file extension)
 
 ### Documentation
+
 - Local mdBook documentation can be served with `npm run serve:docs`
 - Documentation source files are in `docs/` directory
 
 <!-- BACKLOG.MD GUIDELINES START -->
+
 # Instructions for the usage of Backlog.md CLI Tool
 
 ## 1. Source of Truth
@@ -158,7 +179,7 @@ should explain the purpose and context of the task. Code snippets should be avoi
 List specific, measurable outcomes that define what means to reach the goal from the description. Use checkboxes (`- [ ]`) for tracking.
 When defining `## Acceptance Criteria` for a task, focus on **outcomes, behaviors, and verifiable requirements** rather
 than step-by-step implementation details.
-Acceptance Criteria (AC) define *what* conditions must be met for the task to be considered complete.
+Acceptance Criteria (AC) define _what_ conditions must be met for the task to be considered complete.
 They should be testable and confirm that the core purpose of the task is achieved.
 **Key Principles for Good ACs:**
 
@@ -167,10 +188,9 @@ They should be testable and confirm that the core purpose of the task is achieve
 - **Clear and Concise:** Unambiguous language.
 - **Complete:** Collectively, ACs should cover the scope of the task.
 - **User-Focused (where applicable):** Frame ACs from the perspective of the end-user or the system's external behavior.
-
-    - *Good Example:* "- [ ] User can successfully log in with valid credentials."
-    - *Good Example:* "- [ ] System processes 1000 requests per second without errors."
-    - *Bad Example (Implementation Step):* "- [ ] Add a new function `handleLogin()` in `auth.ts`."
+  - _Good Example:_ "- [ ] User can successfully log in with valid credentials."
+  - _Good Example:_ "- [ ] System processes 1000 requests per second without errors."
+  - _Bad Example (Implementation Step):_ "- [ ] Add a new function `handleLogin()` in `auth.ts`."
 
 ### Task file
 
@@ -186,7 +206,7 @@ Once a task is created it will be stored in `backlog/tasks/` directory as a Mark
   previous
   tasks (id < current task id).
 
-- When creating multiple tasks, ensure they are **independent** and they do not depend on future tasks.   
+- When creating multiple tasks, ensure they are **independent** and they do not depend on future tasks.  
   Example of wrong tasks splitting: task 1: "Add API endpoint for user data", task 2: "Define the user model and DB
   schema".  
   Example of correct tasks splitting: task 1: "Add system for handling API requests", task 2: "Add user model and DB
@@ -279,12 +299,12 @@ A task is **Done** only when **ALL** of the following are complete:
 3. **Automated tests** (unit + integration) cover new logic.
 4. **Static analysis**: linter & formatter succeed.
 5. **Documentation**:
-    - All relevant docs updated (any relevant README file, backlog/docs, backlog/decisions, etc.).
-    - Task file **MUST** have an `## Implementation Notes` section added summarising:
-        - Approach taken
-        - Features implemented or modified
-        - Technical decisions and trade-offs
-        - Modified or added files
+   - All relevant docs updated (any relevant README file, backlog/docs, backlog/decisions, etc.).
+   - Task file **MUST** have an `## Implementation Notes` section added summarising:
+     - Approach taken
+     - Features implemented or modified
+     - Technical decisions and trade-offs
+     - Modified or added files
 6. **Review**: self review code.
 7. **Task hygiene**: status set to **Done** via CLI (`backlog task edit <id> -s Done`).
 8. **No regressions**: performance, security and licence checks green.
@@ -294,7 +314,7 @@ A task is **Done** only when **ALL** of the following are complete:
 ## 9. Handy CLI Commands
 
 | Purpose          | Command                                                                |
-|------------------|------------------------------------------------------------------------|
+| ---------------- | ---------------------------------------------------------------------- |
 | Create task      | `backlog task create "Add OAuth"`                                      |
 | Create with desc | `backlog task create "Feature" -d "Enables users to use this feature"` |
 | Create with AC   | `backlog task create "Feature" --ac "Must work,Must be tested"`        |

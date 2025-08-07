@@ -1,4 +1,10 @@
-import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  ReactNode,
+} from 'react';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import { Theme, ThemeName } from '../themes/types';
 import { themes } from '../themes/themes';
@@ -35,15 +41,18 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem('markdownViewerTheme', themeName);
-    
+
     // Apply theme to body for global styles
     document.body.style.backgroundColor = theme.colors.background;
     document.body.style.color = theme.colors.foreground;
-    
+
     // Set CSS variables for theme colors
     const root = document.documentElement;
     root.style.setProperty('--search-highlight', theme.colors.searchHighlight);
-    root.style.setProperty('--search-highlight-current', theme.colors.searchHighlightCurrent);
+    root.style.setProperty(
+      '--search-highlight-current',
+      theme.colors.searchHighlightCurrent
+    );
     root.style.setProperty('--scrollbar-track', theme.colors.scrollbarTrack);
     root.style.setProperty('--scrollbar-thumb', theme.colors.scrollbarThumb);
     root.style.setProperty('--scrollbar-thumb-hover', theme.colors.buttonHover);
@@ -55,10 +64,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, themeName, setTheme, availableThemes }}>
-      <StyledThemeProvider theme={theme}>
-        {children}
-      </StyledThemeProvider>
+    <ThemeContext.Provider
+      value={{ theme, themeName, setTheme, availableThemes }}
+    >
+      <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
     </ThemeContext.Provider>
   );
 };

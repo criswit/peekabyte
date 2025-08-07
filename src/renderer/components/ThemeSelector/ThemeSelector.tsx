@@ -18,7 +18,7 @@ const ThemeButton = styled.button`
   align-items: center;
   gap: 5px;
   font-size: 14px;
-  
+
   &:hover {
     background-color: ${props => props.theme.colors.buttonHover};
   }
@@ -33,7 +33,7 @@ const ThemeDropdown = styled.div<{ $isOpen: boolean }>`
   border: 1px solid ${props => props.theme.colors.border};
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  display: ${props => props.$isOpen ? 'block' : 'none'};
+  display: ${props => (props.$isOpen ? 'block' : 'none')};
   z-index: 1000;
   min-width: 150px;
 `;
@@ -42,21 +42,22 @@ const ThemeOption = styled.button<{ $isActive: boolean }>`
   display: block;
   width: 100%;
   padding: 8px 16px;
-  background: ${props => props.$isActive ? props.theme.colors.fileSelected : 'transparent'};
+  background: ${props =>
+    props.$isActive ? props.theme.colors.fileSelected : 'transparent'};
   border: none;
   color: ${props => props.theme.colors.foreground};
   cursor: pointer;
   text-align: left;
   font-size: 14px;
-  
+
   &:hover {
     background: ${props => props.theme.colors.fileHover};
   }
-  
+
   &:first-child {
     border-radius: 3px 3px 0 0;
   }
-  
+
   &:last-child {
     border-radius: 0 0 3px 3px;
   }
@@ -86,7 +87,10 @@ const ThemeSelector: React.FC = () => {
 
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (isOpen && !(event.target as Element).closest('[data-theme-selector]')) {
+      if (
+        isOpen &&
+        !(event.target as Element).closest('[data-theme-selector]')
+      ) {
         setIsOpen(false);
       }
     };
@@ -108,7 +112,8 @@ const ThemeSelector: React.FC = () => {
             $isActive={theme === themeName}
             onClick={() => handleThemeSelect(theme)}
           >
-            <ThemeIcon>{themeEmojis[theme]}</ThemeIcon> {theme.charAt(0).toUpperCase() + theme.slice(1)}
+            <ThemeIcon>{themeEmojis[theme]}</ThemeIcon>{' '}
+            {theme.charAt(0).toUpperCase() + theme.slice(1)}
           </ThemeOption>
         ))}
       </ThemeDropdown>

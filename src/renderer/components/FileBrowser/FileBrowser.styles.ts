@@ -33,11 +33,11 @@ export const BackButton = styled.button`
   cursor: pointer;
   padding: 5px;
   margin-right: 5px;
-  
+
   &:hover {
     color: ${props => props.theme.colors.foreground};
   }
-  
+
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -47,14 +47,20 @@ export const BackButton = styled.button`
 export const FavoriteButton = styled.button<{ $isFavorite: boolean }>`
   background: none;
   border: none;
-  color: ${props => props.$isFavorite ? props.theme.colors.error : props.theme.colors.sidebarForeground};
+  color: ${props =>
+    props.$isFavorite
+      ? props.theme.colors.error
+      : props.theme.colors.sidebarForeground};
   cursor: pointer;
   padding: 5px;
   margin-left: 5px;
   font-size: 1.2em;
-  
+
   &:hover {
-    color: ${props => props.$isFavorite ? props.theme.colors.error : props.theme.colors.foreground};
+    color: ${props =>
+      props.$isFavorite
+        ? props.theme.colors.error
+        : props.theme.colors.foreground};
   }
 `;
 
@@ -71,12 +77,14 @@ export const FileItem = styled.li<{ $selected?: boolean }>`
   cursor: pointer;
   display: flex;
   align-items: center;
-  
+
   &:hover {
     background-color: ${props => props.theme.colors.fileHover};
   }
-  
-  ${props => props.$selected && `
+
+  ${props =>
+    props.$selected &&
+    `
     background-color: ${props.theme.colors.fileSelected};
   `}
 `;
@@ -93,7 +101,10 @@ export const SymlinkIcon = styled.span`
 
 export const FileIcon = styled.span<{ $isMarkdown?: boolean }>`
   margin-right: 8px;
-  color: ${props => props.$isMarkdown ? props.theme.colors.markdownIcon : props.theme.colors.fileIcon};
+  color: ${props =>
+    props.$isMarkdown
+      ? props.theme.colors.markdownIcon
+      : props.theme.colors.fileIcon};
 `;
 
 export const FileName = styled.span`
@@ -129,7 +140,7 @@ export const FavoriteItem = styled.li`
   cursor: pointer;
   display: flex;
   align-items: center;
-  
+
   &:hover {
     background-color: ${props => props.theme.colors.fileHover};
   }
@@ -142,7 +153,7 @@ export const RemoveFavoriteButton = styled.button`
   cursor: pointer;
   margin-left: auto;
   padding: 2px 5px;
-  
+
   &:hover {
     color: ${props => props.theme.colors.error};
   }
@@ -157,7 +168,7 @@ export const OpenFolderButton = styled.button`
   border-radius: 4px;
   cursor: pointer;
   width: calc(100% - 20px);
-  
+
   &:hover {
     background-color: ${props => props.theme.colors.buttonHover};
   }
@@ -181,12 +192,14 @@ export const ToolbarButton = styled.button<{ $active?: boolean }>`
   padding: 3px 6px;
   border-radius: 3px;
   margin-left: 5px;
-  
+
   &:hover {
     background-color: ${props => props.theme.colors.fileSelected};
   }
-  
-  ${props => props.$active && `
+
+  ${props =>
+    props.$active &&
+    `
     background-color: ${props.theme.colors.fileSelected};
     color: ${props.theme.colors.foreground};
   `}
@@ -194,7 +207,7 @@ export const ToolbarButton = styled.button<{ $active?: boolean }>`
 
 export const RefreshButton = styled(ToolbarButton)`
   color: ${props => props.theme.colors.success};
-  
+
   &:hover {
     color: ${props => props.theme.colors.success};
     opacity: 0.8;

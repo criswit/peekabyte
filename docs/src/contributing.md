@@ -5,6 +5,7 @@ Thank you for your interest in contributing to Peeka2! This guide will help you 
 ## Code of Conduct
 
 We are committed to providing a welcoming and inclusive environment. Please:
+
 - Be respectful and considerate
 - Welcome newcomers and help them get started
 - Focus on constructive criticism
@@ -33,6 +34,7 @@ We are committed to providing a welcoming and inclusive environment. Please:
 ### Submitting Code
 
 #### 1. Fork and Clone
+
 ```bash
 git clone https://github.com/yourusername/peeka2.git
 cd peeka2
@@ -40,6 +42,7 @@ npm install
 ```
 
 #### 2. Create Branch
+
 ```bash
 git checkout -b feature/your-feature
 # or
@@ -47,12 +50,14 @@ git checkout -b fix/issue-description
 ```
 
 #### 3. Make Changes
+
 - Follow existing code style
 - Add types to TypeScript interfaces
 - Test thoroughly
 - Update documentation
 
 #### 4. Commit
+
 ```bash
 git add .
 git commit -m "feat: add new feature"
@@ -61,6 +66,7 @@ git commit -m "fix: resolve issue with..."
 ```
 
 Follow conventional commits:
+
 - `feat:` New features
 - `fix:` Bug fixes
 - `docs:` Documentation
@@ -70,6 +76,7 @@ Follow conventional commits:
 - `chore:` Maintenance
 
 #### 5. Push and PR
+
 ```bash
 git push origin feature/your-feature
 ```
@@ -81,18 +88,21 @@ Then open a Pull Request on GitHub.
 ### Code Style
 
 #### TypeScript
+
 - Use strict mode
 - Avoid `any` type
 - Define interfaces
 - Use meaningful names
 
 #### React
+
 - Functional components
 - Custom hooks for logic
 - Props interfaces
 - Memoization when needed
 
 #### General
+
 - Clear variable names
 - Comments for complex logic
 - Error handling
@@ -101,6 +111,7 @@ Then open a Pull Request on GitHub.
 ### Testing Requirements
 
 Before submitting:
+
 - [ ] No TypeScript errors
 - [ ] Builds successfully
 - [ ] Works in dev mode
@@ -110,6 +121,7 @@ Before submitting:
 ### Documentation
 
 Update docs for:
+
 - New features
 - API changes
 - Configuration options
@@ -146,11 +158,13 @@ Update docs for:
 ## Getting Help
 
 ### Resources
+
 - [Development Setup](./development-setup.md)
 - [Architecture Guide](./architecture.md)
 - [API Reference](./api-reference.md)
 
 ### Communication
+
 - GitHub Issues for bugs
 - Discussions for features
 - Pull Requests for code
@@ -158,6 +172,7 @@ Update docs for:
 ## Recognition
 
 Contributors will be:
+
 - Added to CONTRIBUTORS.md
 - Mentioned in release notes
 - Given credit in commits
@@ -165,11 +180,13 @@ Contributors will be:
 ## Release Process
 
 We use semantic versioning:
+
 - MAJOR: Breaking changes
 - MINOR: New features
 - PATCH: Bug fixes
 
 Releases happen:
+
 - Monthly for features
 - As needed for fixes
 - Immediately for security

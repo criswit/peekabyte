@@ -5,17 +5,20 @@ This guide covers building Peeka2 for development and distribution.
 ## Development Builds
 
 ### Quick Build
+
 ```bash
 # Build all components
 npm run build
 ```
 
 This runs all three build processes:
+
 1. Main process (TypeScript → CommonJS)
 2. Preload script (TypeScript → CommonJS)
 3. Renderer process (Vite build)
 
 ### Individual Builds
+
 ```bash
 # Build specific components
 npm run build:main     # Main process only
@@ -24,6 +27,7 @@ npm run build:renderer # Renderer process only
 ```
 
 ### Build Output
+
 - Main: `dist/main/`
 - Preload: `dist/preload/`
 - Renderer: `dist/renderer/`
@@ -31,6 +35,7 @@ npm run build:renderer # Renderer process only
 ## Production Builds
 
 ### Creating Distributables
+
 ```bash
 # Build and package for current platform
 npm run electron:build
@@ -42,6 +47,7 @@ npm run electron:build -- --linux
 ```
 
 ### Output Locations
+
 - Windows: `release/*-Setup-*.exe`
 - macOS: `release/*.dmg`
 - Linux: `release/*.AppImage`
@@ -49,7 +55,9 @@ npm run electron:build -- --linux
 ## Build Configuration
 
 ### Electron Builder Config
+
 Configuration in `package.json`:
+
 ```json
 {
   "build": {
@@ -65,18 +73,21 @@ Configuration in `package.json`:
 ### Platform-Specific Settings
 
 #### Windows
+
 - NSIS installer
 - Auto-update support
 - Code signing ready
 - Start menu integration
 
 #### macOS
+
 - DMG with custom background
 - Code signing configuration
 - Notarization ready
 - macOS 10.13+ support
 
 #### Linux
+
 - AppImage format
 - Desktop file included
 - Menu integration
@@ -85,18 +96,21 @@ Configuration in `package.json`:
 ## Build Process
 
 ### 1. TypeScript Compilation
+
 - Strict mode checking
 - Type declaration generation
 - Source map creation
 - Module resolution
 
 ### 2. Vite Building
+
 - Production optimizations
 - Code splitting
 - Asset optimization
 - Minification
 
 ### 3. Electron Packaging
+
 - Native modules compilation
 - Asset bundling
 - Installer creation
@@ -105,12 +119,14 @@ Configuration in `package.json`:
 ## Optimization
 
 ### Bundle Size
+
 - Tree shaking enabled
 - Dead code elimination
 - Dynamic imports
 - Asset compression
 
 ### Performance
+
 - Lazy loading
 - Code splitting
 - Minification
@@ -121,6 +137,7 @@ Configuration in `package.json`:
 ### Common Build Issues
 
 **Native Module Errors**
+
 ```bash
 # Rebuild native modules
 npm rebuild
@@ -129,12 +146,14 @@ npm run postinstall
 ```
 
 **Out of Memory**
+
 ```bash
 # Increase Node memory
 NODE_OPTIONS=--max_old_space_size=4096 npm run build
 ```
 
 **Permission Errors**
+
 ```bash
 # Clean and rebuild
 npm run clean
@@ -144,14 +163,17 @@ sudo npm run electron:build
 ### Platform-Specific Issues
 
 **Windows: Missing Visual Studio**
+
 - Install Visual Studio Build Tools
 - Include C++ build tools
 
 **macOS: Code Signing Failed**
+
 - Check Apple Developer certificate
 - Verify keychain access
 
 **Linux: AppImage Won't Run**
+
 ```bash
 chmod +x peeka2-*.AppImage
 ```
@@ -159,6 +181,7 @@ chmod +x peeka2-*.AppImage
 ## Continuous Integration
 
 ### GitHub Actions Setup
+
 ```yaml
 name: Build
 on: [push, pull_request]
@@ -171,6 +194,7 @@ jobs:
 ```
 
 ### Build Matrix
+
 - Multiple Node versions
 - All platforms
 - Architecture variants
@@ -179,17 +203,20 @@ jobs:
 ## Release Process
 
 ### 1. Version Bump
+
 ```bash
 npm version patch/minor/major
 ```
 
 ### 2. Build All Platforms
+
 ```bash
 # On each platform
 npm run electron:build
 ```
 
 ### 3. Create Release
+
 1. Tag version in Git
 2. Create GitHub release
 3. Upload artifacts
@@ -198,6 +225,7 @@ npm run electron:build
 ## Advanced Configuration
 
 ### Custom Build Flags
+
 ```bash
 # Debug build
 DEBUG=electron-builder npm run electron:build
@@ -207,6 +235,7 @@ CSC_IDENTITY_AUTO_DISCOVERY=false npm run electron:build
 ```
 
 ### Build Variants
+
 - Portable versions
 - MSI installers (Windows)
 - Snap packages (Linux)

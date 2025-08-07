@@ -1,6 +1,6 @@
-project_name: "peekabyte"
-default_status: "To Do"
-statuses: ["To Do", "In Progress", "Done"]
+project_name: 'peekabyte'
+default_status: 'To Do'
+statuses: ['To Do', 'In Progress', 'Done']
 labels: []
 milestones: []
 date_format: yyyy-mm-dd

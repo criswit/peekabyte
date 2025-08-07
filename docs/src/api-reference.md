@@ -22,12 +22,15 @@ readDirectory(dirPath: string): Promise<{
 ```
 
 **Parameters:**
+
 - `dirPath`: Absolute path to directory
 
 **Returns:**
+
 - Array of file/directory entries
 
 **Example:**
+
 ```javascript
 const files = await window.electronAPI.readDirectory('/home/user/Documents');
 ```
@@ -41,12 +44,15 @@ readFile(filePath: string): Promise<string>
 ```
 
 **Parameters:**
+
 - `filePath`: Absolute path to file
 
 **Returns:**
+
 - File contents as string
 
 **Example:**
+
 ```javascript
 const content = await window.electronAPI.readFile('/home/user/file.txt');
 ```
@@ -60,9 +66,11 @@ getHomeDirectory(): Promise<string>
 ```
 
 **Returns:**
+
 - Home directory path
 
 **Example:**
+
 ```javascript
 const homePath = await window.electronAPI.getHomeDirectory();
 ```
@@ -88,23 +96,26 @@ showOpenDialog(options: {
 ```
 
 **Parameters:**
+
 - `options`: Dialog configuration
   - `properties`: Dialog behavior flags
   - `filters`: File type filters
   - `defaultPath`: Initial directory
 
 **Returns:**
+
 - `canceled`: Whether dialog was canceled
 - `filePaths`: Selected paths
 
 **Example:**
+
 ```javascript
 const result = await window.electronAPI.showOpenDialog({
   properties: ['openFile'],
   filters: [
     { name: 'Markdown', extensions: ['md'] },
-    { name: 'All Files', extensions: ['*'] }
-  ]
+    { name: 'All Files', extensions: ['*'] },
+  ],
 });
 ```
 
@@ -119,13 +130,16 @@ watchFile(filePath: string): void
 ```
 
 **Parameters:**
+
 - `filePath`: Path to watch
 
 **Events:**
+
 - `file-changed`: Emitted when file changes
 - `file-deleted`: Emitted when file is deleted
 
 **Example:**
+
 ```javascript
 window.electronAPI.watchFile('/path/to/file.txt');
 window.electronAPI.onFileChange((event, path, changeType) => {
@@ -142,12 +156,15 @@ watchDirectory(dirPath: string): void
 ```
 
 **Parameters:**
+
 - `dirPath`: Directory to watch
 
 **Events:**
+
 - `directory-changed`: Emitted on changes
 
 **Example:**
+
 ```javascript
 window.electronAPI.watchDirectory('/path/to/dir');
 window.electronAPI.onDirectoryChange((event, path, changeType) => {
@@ -164,6 +181,7 @@ stopWatching(): void
 ```
 
 **Example:**
+
 ```javascript
 window.electronAPI.stopWatching();
 ```
@@ -206,6 +224,7 @@ removeAllListeners(channel: string): void
 ## Type Definitions
 
 ### FileEntry
+
 ```typescript
 interface FileEntry {
   name: string;
@@ -216,6 +235,7 @@ interface FileEntry {
 ```
 
 ### DialogOptions
+
 ```typescript
 interface DialogOptions {
   properties?: Array<'openFile' | 'openDirectory' | 'multiSelections'>;
@@ -228,6 +248,7 @@ interface DialogOptions {
 ```
 
 ### DialogResult
+
 ```typescript
 interface DialogResult {
   canceled: boolean;
@@ -248,6 +269,7 @@ try {
 ```
 
 Common errors:
+
 - `ENOENT`: File not found
 - `EACCES`: Permission denied
 - `EISDIR`: Is a directory
@@ -263,6 +285,7 @@ Common errors:
 ## Future APIs
 
 Planned additions:
+
 - File operations (copy, move, delete)
 - Search functionality
 - Metadata retrieval

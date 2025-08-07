@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple HTML Demo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+      .container {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+        text-align: center;
+      }
+      .demo-box {
+        background: #e3f2fd;
+        padding: 15px;
+        margin: 15px 0;
+        border-left: 4px solid #2196f3;
+        border-radius: 4px;
+      }
+      button {
+        background: #2196f3;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 5px;
+      }
+      button:hover {
+        background: #1976d2;
+      }
+      .result {
+        margin-top: 10px;
+        padding: 10px;
+        background: #c8e6c9;
+        border-radius: 4px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🌐 Simple HTML Demo</h1>
+
+      <div class="demo-box">
+        <h3>Interactive Elements</h3>
+        <p>
+          This HTML file demonstrates that JavaScript works in the HTML viewer:
+        </p>
+        <button onclick="showAlert()">Show Alert</button>
+        <button onclick="changeColor()">Change Background</button>
+        <button onclick="addContent()">Add Content</button>
+        <div id="result" class="result"></div>
+      </div>
+
+      <div class="demo-box">
+        <h3>CSS Styling</h3>
+        <p>This page uses CSS for styling, including:</p>
+        <ul>
+          <li>Custom fonts and colors</li>
+          <li>Box shadows and borders</li>
+          <li>Hover effects on buttons</li>
+          <li>Responsive layout</li>
+        </ul>
+      </div>
+
+      <div class="demo-box">
+        <h3>HTML Features</h3>
+        <p>The HTML viewer supports:</p>
+        <ul>
+          <li><strong>Semantic HTML</strong> elements</li>
+          <li><em>Text formatting</em> and <code>inline code</code></li>
+          <li>
+            <a href="#" onclick="return false;">Links</a> (disabled for demo)
+          </li>
+          <li>Lists, tables, and forms</li>
+        </ul>
+      </div>
+
+      <div id="dynamic-content"></div>
+    </div>
+
+    <script>
+      let clickCount = 0;
+
+      function showAlert() {
+        alert('Hello from the HTML viewer! 🎉');
+      }
+
+      function changeColor() {
+        const colors = ['#f5f5f5', '#fff3e0', '#e8f5e8', '#f3e5f5', '#e3f2fd'];
+        document.body.style.background =
+          colors[Math.floor(Math.random() * colors.length)];
+      }
+
+      function addContent() {
+        clickCount++;
+        const result = document.getElementById('result');
+        result.style.display = 'block';
+        result.innerHTML = `<strong>Dynamic content added!</strong><br>Button clicked ${clickCount} time(s).`;
+
+        if (clickCount === 1) {
+          const dynamicDiv = document.getElementById('dynamic-content');
+          dynamicDiv.innerHTML = `
+                    <div class="demo-box">
+                        <h3>🎯 Dynamic Content</h3>
+                        <p>This content was added dynamically using JavaScript!</p>
+                        <p><small>Current time: ${new Date().toLocaleString()}</small></p>
+                    </div>
+                `;
+        }
+      }
+
+      // Add some dynamic content on load
+      document.addEventListener('DOMContentLoaded', function () {
+        console.log('Simple HTML demo loaded successfully!');
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+id,name,value,notes
+1,Alice,100,Complete record
+2,Bob,,Missing value
+3,,50,Missing name
+4,Charlie,0,Zero value
+5,Diana,null,Null string

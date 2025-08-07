@@ -1,0 +1,16 @@
+country	capital	population	gdp_per_capita	continent	currency	language
+United States	Washington D.C.	331900000	63543	North America	USD	English
+China	Beijing	1439323776	10500	Asia	CNY	Mandarin
+Japan	Tokyo	125800000	39285	Asia	JPY	Japanese
+Germany	Berlin	83200000	46259	Europe	EUR	German
+United Kingdom	London	67800000	42328	Europe	GBP	English
+France	Paris	67400000	40493	Europe	EUR	French
+India	New Delhi	1380004385	1900	Asia	INR	Hindi
+Italy	Rome	59500000	31952	Europe	EUR	Italian
+Brazil	Brasília	212600000	6796	South America	BRL	Portuguese
+Canada	Ottawa	38000000	43241	North America	CAD	English
+Russia	Moscow	145900000	11654	Europe	RUB	Russian
+South Korea	Seoul	51780000	31846	Asia	KRW	Korean
+Australia	Canberra	25700000	51812	Oceania	AUD	English
+Spain	Madrid	47400000	27057	Europe	EUR	Spanish
+Mexico	Mexico City	128900000	9673	North America	MXN	Spanish

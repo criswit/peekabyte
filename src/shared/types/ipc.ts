@@ -8,8 +8,12 @@ export interface FileChangeEvent {
 
 export interface ElectronAPI {
   getHomeDir: () => Promise<string>;
-  readDirectory: (dirPath: string, showDotFiles?: boolean) => Promise<FileItem[]>;
+  readDirectory: (
+    dirPath: string,
+    showDotFiles?: boolean
+  ) => Promise<FileItem[]>;
   readFile: (filePath: string) => Promise<string>;
+  readBinaryFile: (filePath: string) => Promise<string>;
   openDirectoryDialog: () => Promise<string | null>;
   watchFile: (filePath: string) => Promise<boolean>;
   unwatchFile: () => Promise<boolean>;

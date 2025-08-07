@@ -5,12 +5,14 @@ This guide will help you set up your development environment for contributing to
 ## Prerequisites
 
 ### Required Software
+
 - **Node.js**: v16.0.0 or higher
 - **npm**: v7.0.0 or higher
 - **Git**: Latest version
 - **Code Editor**: VS Code recommended
 
 ### Recommended VS Code Extensions
+
 - TypeScript and JavaScript Language Features
 - ESLint (when configured)
 - Prettier (when configured)
@@ -19,6 +21,7 @@ This guide will help you set up your development environment for contributing to
 ## Initial Setup
 
 ### 1. Fork and Clone
+
 ```bash
 # Fork the repository on GitHub first
 git clone https://github.com/yourusername/peeka2.git
@@ -26,11 +29,13 @@ cd peeka2
 ```
 
 ### 2. Install Dependencies
+
 ```bash
 npm install
 ```
 
 ### 3. Verify Setup
+
 ```bash
 # Run development mode
 npm run electron:dev
@@ -61,6 +66,7 @@ npm run debug         # Run with debug logging
 ```
 
 ### Development Mode Features
+
 - **Hot Module Replacement**: Instant updates in renderer
 - **Auto-restart**: Main process restarts on changes
 - **Source Maps**: Full debugging support
@@ -69,6 +75,7 @@ npm run debug         # Run with debug logging
 ## Project Structure
 
 ### Key Directories
+
 ```
 peeka2/
 ├── src/
@@ -82,6 +89,7 @@ peeka2/
 ```
 
 ### TypeScript Configuration
+
 - `tsconfig.json`: Base configuration
 - `tsconfig.main.json`: Main process config
 - `tsconfig.preload.json`: Preload config
@@ -89,17 +97,20 @@ peeka2/
 ## Making Changes
 
 ### 1. Create a Feature Branch
+
 ```bash
 git checkout -b feature/your-feature-name
 ```
 
 ### 2. Development Cycle
+
 1. Make changes in appropriate directory
 2. Test in development mode
 3. Build and test production mode
 4. Commit changes
 
 ### 3. Code Style
+
 - Use TypeScript for all new code
 - Follow existing patterns
 - Keep components focused
@@ -108,12 +119,14 @@ git checkout -b feature/your-feature-name
 ## Debugging
 
 ### Renderer Process
+
 1. Open DevTools: `Ctrl+Shift+I` / `Cmd+Option+I`
 2. Use React DevTools
 3. Set breakpoints in Sources tab
 4. Check Console for errors
 
 ### Main Process
+
 1. Add `debugger` statements
 2. Run with `--inspect`:
    ```bash
@@ -125,12 +138,14 @@ git checkout -b feature/your-feature-name
 ### Common Issues
 
 **Port 5173 in use**
+
 ```bash
 # Kill process using port
 lsof -ti:5173 | xargs kill -9
 ```
 
 **Module not found errors**
+
 ```bash
 # Clear cache and reinstall
 npm run clean
@@ -139,6 +154,7 @@ npm install
 ```
 
 **TypeScript errors**
+
 ```bash
 # Check all TypeScript files
 npx tsc --noEmit
@@ -147,6 +163,7 @@ npx tsc --noEmit
 ## Testing Changes
 
 ### Manual Testing Checklist
+
 - [ ] Works in development mode
 - [ ] Works in production build
 - [ ] No console errors
@@ -155,6 +172,7 @@ npx tsc --noEmit
 - [ ] Theme compatibility
 
 ### Performance Testing
+
 - Check memory usage in Task Manager
 - Monitor CPU usage during operations
 - Test with large files/directories
@@ -163,6 +181,7 @@ npx tsc --noEmit
 ## Best Practices
 
 ### Do's
+
 - ✅ Test on all platforms if possible
 - ✅ Keep commits focused and atomic
 - ✅ Update documentation
@@ -170,6 +189,7 @@ npx tsc --noEmit
 - ✅ Handle errors gracefully
 
 ### Don'ts
+
 - ❌ Commit `node_modules`
 - ❌ Include personal configuration
 - ❌ Expose sensitive data

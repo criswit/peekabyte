@@ -30,13 +30,6 @@
       "@main/*": ["src/main/*"]
     }
   },
-  "include": [
-    "src/**/*",
-    "vite.config.ts"
-  ],
-  "exclude": [
-    "electron/**/*",
-    "dist",
-    "node_modules"
-  ]
+  "include": ["src/**/*", "vite.config.ts"],
+  "exclude": ["electron/**/*", "dist", "node_modules"]
 }

@@ -5,12 +5,14 @@ The JSON Viewer provides a formatted, syntax-highlighted view of JSON files with
 ## Features
 
 ### Core Functionality
+
 - **Syntax highlighting**: Color-coded JSON elements
 - **Pretty formatting**: Automatic indentation and spacing
 - **Error handling**: Clear error messages for invalid JSON
 - **Large file support**: Handles files up to 10MB efficiently
 
 ### Visual Features
+
 - **Collapsible sections**: Expand/collapse objects and arrays
 - **Line numbers**: Easy reference to specific lines
 - **Type indicators**: Visual distinction for different data types
@@ -19,6 +21,7 @@ The JSON Viewer provides a formatted, syntax-highlighted view of JSON files with
 ## Data Type Support
 
 ### Supported Types
+
 - **Objects**: `{}`
 - **Arrays**: `[]`
 - **Strings**: `"text"`
@@ -27,6 +30,7 @@ The JSON Viewer provides a formatted, syntax-highlighted view of JSON files with
 - **Null**: `null`
 
 ### Special Handling
+
 - **Long strings**: Truncated with expand option
 - **Large arrays**: Pagination for arrays > 1000 items
 - **Nested objects**: Indentation up to 10 levels
@@ -35,13 +39,16 @@ The JSON Viewer provides a formatted, syntax-highlighted view of JSON files with
 ## User Interface
 
 ### Interactive Elements
+
 - **Click to collapse**: Click on objects/arrays to toggle
 - **Copy button**: Copy entire JSON or sections
 - **Search**: Find text within JSON (planned)
 - **Path display**: Show path to selected element (planned)
 
 ### Theme Integration
+
 Each theme provides optimized colors for:
+
 - Property names
 - String values
 - Number values
@@ -52,12 +59,14 @@ Each theme provides optimized colors for:
 ## Performance Features
 
 ### Optimizations
+
 - **Virtual scrolling**: For large files
 - **Lazy parsing**: Parse visible content first
 - **Memoization**: Cache formatted output
 - **Web worker**: Parse in background (planned)
 
 ### File Size Guidelines
+
 - **Instant**: < 100KB
 - **Fast**: < 1MB
 - **Acceptable**: < 5MB
@@ -73,6 +82,7 @@ Each theme provides optimized colors for:
 ## Error Messages
 
 Common errors and their meanings:
+
 - **Unexpected token**: Syntax error in JSON
 - **Unexpected end**: Missing closing bracket
 - **Invalid character**: Non-JSON characters present

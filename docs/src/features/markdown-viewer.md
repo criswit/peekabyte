@@ -5,6 +5,7 @@ The Markdown Viewer provides a rich rendering experience for Markdown files with
 ## Features
 
 ### Markdown Support
+
 - **CommonMark compliant**: Full support for standard Markdown
 - **GitHub Flavored Markdown**: Tables, task lists, strikethrough
 - **Code highlighting**: Syntax highlighting for code blocks
@@ -13,6 +14,7 @@ The Markdown Viewer provides a rich rendering experience for Markdown files with
 ### Supported Elements
 
 #### Basic Formatting
+
 - Headers (h1-h6)
 - Bold and italic text
 - Links and images
@@ -21,6 +23,7 @@ The Markdown Viewer provides a rich rendering experience for Markdown files with
 - Horizontal rules
 
 #### Extended Features
+
 - Tables with alignment
 - Task lists with checkboxes
 - Fenced code blocks
@@ -29,14 +32,16 @@ The Markdown Viewer provides a rich rendering experience for Markdown files with
 - Line breaks
 
 ### Code Highlighting
+
 ```javascript
 // Automatic language detection
 function example() {
-  return "Syntax highlighted!";
+  return 'Syntax highlighted!';
 }
 ```
 
 Supported languages:
+
 - JavaScript/TypeScript
 - Python
 - Java
@@ -49,12 +54,14 @@ Supported languages:
 ## User Interface
 
 ### Display Options
+
 - **Scrollable content**: Smooth scrolling for long documents
 - **Responsive images**: Images scale to fit
 - **Readable typography**: Optimized for reading
 - **Theme integration**: Follows app theme
 
 ### Interactive Elements
+
 - **Clickable links**: Opens in default browser
 - **Copy code blocks**: One-click code copying
 - **Image zoom**: Click to view full size (planned)
@@ -63,12 +70,14 @@ Supported languages:
 ## Performance
 
 ### Optimizations
+
 - **Incremental rendering**: Large files render progressively
 - **Memoized parsing**: Cached parsing results
 - **Debounced updates**: Prevents excessive re-renders
 - **Lazy image loading**: Images load on demand
 
 ### File Size Limits
+
 - **Optimal**: Files under 1MB
 - **Good**: Files up to 5MB
 - **Slow**: Files over 10MB

@@ -11,7 +11,7 @@ on:
 jobs:
   build-and-release:
     runs-on: ${{ matrix.os }}
-    
+
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
@@ -51,18 +51,18 @@ jobs:
           name: Release v${{ github.event.inputs.version }}
           body: |
             ## Markdown Viewer v${{ github.event.inputs.version }}
-            
+
             ### Installation
-            
+
             #### Linux
             - Download the `.AppImage` file
             - Make it executable: `chmod +x Markdown-Viewer-*.AppImage`
             - Run it: `./Markdown-Viewer-*.AppImage`
-            
+
             #### Windows
             - Download the `.exe` installer
             - Run the installer
-            
+
             #### macOS
             - Download the `.dmg` file
             - Open it and drag the app to Applications

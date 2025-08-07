@@ -2,6 +2,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import FileBrowser from './components/FileBrowser';
 import MarkdownViewer from './components/MarkdownViewer';
+import ImageViewer from './components/ImageViewer';
+import PDFViewer from './components/PDFViewer';
+import HTMLViewer from './components/HTMLViewer';
+import CsvViewer from './components/CsvViewer/CsvViewer';
 import { SelectedFile } from '@shared/types';
 
 // Log that App.tsx is being loaded
@@ -42,11 +46,11 @@ const ResizeHandle = styled.div<{ $left: number }>`
   height: 100%;
   cursor: col-resize;
   z-index: 10;
-  
+
   &:hover {
     background-color: rgba(100, 100, 100, 0.1);
   }
-  
+
   &:active {
     background-color: rgba(100, 100, 100, 0.2);
   }
@@ -60,7 +64,7 @@ const App: React.FC = () => {
     const savedWidth = localStorage.getItem('markdownViewerPanelWidth');
     return savedWidth ? parseInt(savedWidth, 10) : 300;
   });
-  
+
   const [isResizing, setIsResizing] = useState(false);
   const startXRef = useRef(0);
   const startWidthRef = useRef(0);
@@ -69,46 +73,60 @@ const App: React.FC = () => {
   useEffect(() => {
     console.log('Checking electronAPI availability:', {
       electronAPIExists: !!window.electronAPI,
-      availableMethods: window.electronAPI ? Object.keys(window.electronAPI) : []
+      availableMethods: window.electronAPI
+        ? Object.keys(window.electronAPI)
+        : [],
     });
   }, []);
 
   // Set up file watcher for the selected file
   useEffect(() => {
-    if (!selectedFile || !selectedFile.isMarkdown || !window.electronAPI) return;
-    
+    if (!selectedFile || !selectedFile.isMarkdown || !window.electronAPI)
+      return;
+
     const setupFileWatcher = async () => {
       try {
         console.log(`Setting up file watcher for: ${selectedFile.path}`);
         // Start watching the selected file
         await window.electronAPI.watchFile(selectedFile.path);
-        
+
         // Set up file change listener
-        const removeFileListener = window.electronAPI.onFileChanged((data) => {
+        const removeFileListener = window.electronAPI.onFileChanged(data => {
           console.log('File changed event received:', data);
-          
+
           if (data.path === selectedFile.path) {
             if (data.deleted) {
               // Handle file deletion
               console.log('Selected file was deleted');
-              setSelectedFile(prevFile => prevFile ? {
-                ...prevFile,
-                deleted: true,
-                error: 'The file has been deleted.'
-              } : null);
+              setSelectedFile(prevFile =>
+                prevFile
+                  ? {
+                      ...prevFile,
+                      deleted: true,
+                      error: 'The file has been deleted.',
+                    }
+                  : null
+              );
             } else if (data.content) {
               // Update the file content
-              console.log('Updating file content with:', data.content.substring(0, 50) + '...');
-              setSelectedFile(prevFile => prevFile ? {
-                ...prevFile,
-                content: data.content,
-                error: null,
-                deleted: false
-              } : null);
+              console.log(
+                'Updating file content with:',
+                data.content.substring(0, 50) + '...'
+              );
+              setSelectedFile(prevFile =>
+                prevFile
+                  ? {
+                      ...prevFile,
+                      content: data.content,
+                      error: null,
+                      deleted: false,
+                    }
+                  : null
+              );
             }
           }
         });
-        
+
         // Clean up listener when component unmounts or file changes
         return () => {
           console.log(`Cleaning up file watcher for: ${selectedFile.path}`);
@@ -119,19 +137,29 @@ const App: React.FC = () => {
         console.error('Error setting up file watcher:', err);
       }
     };
-    
+
     const cleanup = setupFileWatcher();
-    
+
     // Clean up when component unmounts or selected file changes
     return () => {
       cleanup.then(cleanupFn => cleanupFn?.());
       window.electronAPI.unwatchFile();
     };
-  }, [selectedFile?.path]);
+  }, [selectedFile]);
 
   const handleFileSelect = async (file: SelectedFile) => {
     try {
-      console.log('File selected:', file);
+      console.log('File selected in App.tsx:', file);
+      console.log('File properties:', {
+        name: file.name,
+        isMarkdown: file.isMarkdown,
+        isJson: file.isJson,
+        isImage: file.isImage,
+        isPdf: file.isPdf,
+        isHtml: file.isHtml,
+        isCsv: file.isCsv,
+        contentLength: file.content?.length,
+      });
       setSelectedFile(file);
     } catch (err) {
       console.error('Error selecting file:', err);
@@ -141,41 +169,41 @@ const App: React.FC = () => {
   const toggleViewMode = () => {
     setShowSource(!showSource);
   };
-  
+
   const handleResizeStart = (e: React.MouseEvent) => {
     e.preventDefault();
     startXRef.current = e.clientX;
     startWidthRef.current = panelWidth;
     setIsResizing(true);
-    
+
     document.body.classList.add('resize-active');
   };
-  
+
   useEffect(() => {
     const handleResizeMove = (e: MouseEvent) => {
       if (!isResizing) return;
-      
+
       const newWidth = startWidthRef.current + (e.clientX - startXRef.current);
       // Constrain width between min and max values
       const constrainedWidth = Math.max(200, Math.min(600, newWidth));
       setPanelWidth(constrainedWidth);
     };
-    
+
     const handleResizeEnd = () => {
       if (!isResizing) return;
-      
+
       setIsResizing(false);
       document.body.classList.remove('resize-active');
-      
+
       // Save the width to localStorage
       localStorage.setItem('markdownViewerPanelWidth', panelWidth.toString());
     };
-    
+
     if (isResizing) {
       document.addEventListener('mousemove', handleResizeMove);
       document.addEventListener('mouseup', handleResizeEnd);
     }
-    
+
     return () => {
       document.removeEventListener('mousemove', handleResizeMove);
       document.removeEventListener('mouseup', handleResizeEnd);
@@ -190,19 +218,26 @@ const App: React.FC = () => {
           selectedFile={selectedFile}
         />
       </FileBrowserContainer>
-      
-      <ResizeHandle 
-        $left={panelWidth}
-        onMouseDown={handleResizeStart}
-      />
-      
+
+      <ResizeHandle $left={panelWidth} onMouseDown={handleResizeStart} />
+
       <MarkdownViewerContainer>
-        <MarkdownViewer
-          content={selectedFile ? selectedFile.content : ''}
-          showSource={showSource}
-          onToggleView={toggleViewMode}
-          selectedFile={selectedFile}
-        />
+        {selectedFile?.isImage ? (
+          <ImageViewer selectedFile={selectedFile} />
+        ) : selectedFile?.isPdf ? (
+          <PDFViewer selectedFile={selectedFile} />
+        ) : selectedFile?.isHtml ? (
+          <HTMLViewer selectedFile={selectedFile} />
+        ) : selectedFile?.isCsv ? (
+          <CsvViewer selectedFile={selectedFile} />
+        ) : (
+          <MarkdownViewer
+            content={selectedFile ? selectedFile.content : ''}
+            showSource={showSource}
+            onToggleView={toggleViewMode}
+            selectedFile={selectedFile}
+          />
+        )}
       </MarkdownViewerContainer>
     </AppContainer>
   );

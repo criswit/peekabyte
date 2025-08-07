@@ -1,0 +1,4 @@
+id|name|email|age|salary|active|hire_date
+1|John Doe|john@example.com|28|75000|true|2022-01-15
+2|Jane Smith|jane@example.com|32|82000|false|2021-03-22
+3|Bob Johnson|bob@example.com|45|95000|true|2019-07-10
